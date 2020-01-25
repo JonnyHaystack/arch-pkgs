@@ -1,0 +1,18 @@
+# Maintainer: Jonathan Haylett <jonathan@haylett.dev>
+pkgname=haystack-gaming
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Gaming packages for my Arch installations"
+arch=('any')
+url="https://github.com/JonnyHaystack/arch-pkgs"
+license=('GPL')
+depends=(
+    'haystack-desktop'
+    'steam'
+    'wine'
+    'winetricks'
+    'protontricks'
+    'pcsx2'
+    'citra-git'
+    'citra-qt-git'
+)
