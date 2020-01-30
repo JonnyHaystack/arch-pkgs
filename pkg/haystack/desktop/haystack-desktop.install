@@ -1,0 +1,9 @@
+post_install() {
+    systemctl enable set-sidetone
+    post_upgrade
+}
+
+post_upgrade() {
+    mv /etc/lightdm/lightdm.conf.haystack /etc/lightdm/lightdm.conf
+    mv /etc/lightdm/slick-greeter.conf.haystack /etc/lightdm/slick-greeter.conf
+}

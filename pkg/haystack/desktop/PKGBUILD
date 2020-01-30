@@ -6,6 +6,7 @@ pkgdesc="Desktop packages for my Arch installations"
 arch=('any')
 url="https://github.com/JonnyHaystack/arch-pkgs"
 license=('GPL')
+install=haystack-desktop.install
 depends=(
     'haystack-base'
     'xorg-server'
@@ -21,6 +22,7 @@ depends=(
     'ttf-dejavu'
     'ttf-roboto'
     'ttf-roboto-mono'
+    'wmctrl'
     'xdotool'
     'xsel'
     'xclip'
@@ -88,3 +90,22 @@ depends=(
     'kde-connect'
     'android-file-transfer'
 )
+source=('lightdm/lightdm.conf'
+        'lightdm/slick-greeter.conf'
+        'lightdm/display_setup.sh'
+        'lightdm/arch.png'
+        'systemd/set_sidetone.sh')
+
+package() {
+    # LightDM
+    install -Dm 0644 lightdm/lightdm.conf "$pkgdir/etc/lightdm/lightdm.conf.haystack"
+    install -Dm 0644 lightdm/slick-greeter.conf "$pkgdir/etc/lightdm/slick-greeter.conf.haystack"
+    install -Dm 0755 lightdm/display_setup.sh "$pkgdir/etc/lightdm/display_setup.sh"
+    install -Dm 0644 lightdm/arch.png "$pkgdir/usr/share/wallpapers/arch.png"
+
+    # bin files
+    install -Dm 0755 bin/set_sidetone.sh "$pkgdir/usr/local/bin/set_sidetone.sh"
+
+    # systemd unit files
+    install -Dm 0644 systemd/set-sidetone.service "$pkgdir/etc/systemd/system/set-sidetone.service"
+}

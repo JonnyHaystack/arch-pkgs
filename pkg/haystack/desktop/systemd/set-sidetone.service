@@ -1,0 +1,10 @@
+[Unit]
+Description=Logitech G430 Sidetone
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/local/bin/set_sidetone.sh
+
+[Install]
+WantedBy=multi-user.target
