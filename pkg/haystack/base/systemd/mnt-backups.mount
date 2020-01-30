@@ -1,0 +1,13 @@
+[Unit]
+Description=Mount backups NFS share
+Wants=network-online.target
+After=network-online.target
+
+[Mount]
+What=192.168.1.109:/backups
+Where=/mnt/backups
+Type=nfs
+Options=_netdev,auto
+
+[Install]
+WantedBy=multi-user.target

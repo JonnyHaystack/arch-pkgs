@@ -75,3 +75,17 @@ depends=(
     'pam-krb5'
     'logrotate'
 )
+source=('sudoers.wheel'
+        'systemd/mnt-box.mount'
+        'systemd/mnt-Media.mount'
+        'systemd/mnt-backups.mount')
+
+package() {
+    # sudoers
+    install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers.d/wheel"
+
+    # systemd unit files
+    install -Dm 0644 systemd/mnt-box.mount "$pkgdir/etc/systemd/system/mnt-box.mount"
+    install -Dm 0644 systemd/mnt-Media.mount "$pkgdir/etc/systemd/system/mnt-Media.mount"
+    install -Dm 0644 systemd/mnt-backups.mount "$pkgdir/etc/systemd/system/mnt-backups.mount"
+}

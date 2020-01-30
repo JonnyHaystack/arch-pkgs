@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount box.com Account WebDAV
+Wants=network-online.target
+After=network-online.target
+
+[Mount]
+What=https://dav.box.com/dav
+Where=/mnt/box
+Type=davfs
+Options=rw,user,_netdev,uid=haystack,gid=boxusers
+TimeoutSec=60
+
+[Install]
+WantedBy=multi-user.target
