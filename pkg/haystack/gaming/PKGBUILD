@@ -13,6 +13,8 @@ depends=(
     'winetricks'
     'protontricks'
     'pcsx2'
+    'rpcs3-bin'
     'citra-git'
     'citra-qt-git'
+    'sc-controller'
 )
