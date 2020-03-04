@@ -50,6 +50,8 @@ depends=(
     'alacritty'
     'guake'
     'qutebrowser'
+    'python-tldextract'
+    'python-pyperclip'
     'chromium-widevine'
     'telegram-desktop'
     'network-manager-applet'
