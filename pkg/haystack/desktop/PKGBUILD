@@ -54,6 +54,7 @@ depends=(
     'python-pyperclip'
     'chromium-widevine'
     'telegram-desktop'
+    'caprine'
     'network-manager-applet'
     'networkmanager-openvpn'
     'nordvpn-bin'
