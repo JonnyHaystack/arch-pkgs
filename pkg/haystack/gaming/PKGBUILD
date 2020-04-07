@@ -18,3 +18,8 @@ depends=(
     'citra-qt-git'
     'sc-controller'
 )
+
+package() {
+    # udev rules
+    install -Dm 0644 udev/* -t "$pkgdir/etc/udev/rules.d"
+}

@@ -115,4 +115,7 @@ package() {
 
     # systemd unit files
     install -Dm 0644 systemd/set-sidetone.service "$pkgdir/etc/systemd/system/set-sidetone.service"
+
+    # udev rules
+    install -Dm 0644 udev/* -t "$pkgdir/etc/udev/rules.d"
 }
