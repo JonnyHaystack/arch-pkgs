@@ -1,1 +1,2 @@
-ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="652f", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.4.4.3/power/wakeup}="disabled"
+ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="652f", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.3/power/wakeup}="disabled"
+ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTRS{idVendor}=="258a", ATTRS{idProduct}=="1007", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.4.4.4/power/wakeup}="disabled"
