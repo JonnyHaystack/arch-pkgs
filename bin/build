@@ -9,7 +9,7 @@ LOCAL_PATH=$HOME/.local/share/arch-repo
 REPO_PATH=x86_64
 REPO_NAME=meta
 
-PACKAGES=${@:-pkg/*}
+PACKAGES=${@:-pkg/haystack/*}
 CHROOT="$PWD/root"
 
 mkdir -p "$LOCAL_PATH"
