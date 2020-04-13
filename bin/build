@@ -27,7 +27,7 @@ for package in $PACKAGES; do
 done
 
 # Clone/pull repo.
-if [[ -d "${LOCAL_PATH}/repo" ]]; then
+if [[ -d "${LOCAL_PATH}" ]]; then
     # LOCAL_PATH exists, reset and pull any changes
     gitc reset --hard
     gitc clean -xffd
@@ -41,9 +41,9 @@ fi
 mkdir -p "${LOCAL_PATH}/${REPO_PATH}"
 
 # Add built packages to database.
-ln -sf "$REPO_NAME.db.tar.xz" "$LOCAL_PATH/$REPO_NAME.db"
-ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
-repo-add "$LOCAL_PATH/$REPO_NAME.db.tar.xz" "${PACKAGES[@]}/"*.pkg.tar.xz
+ln -sf "$REPO_NAME.db.tar.xz" "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db"
+ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.files"
+repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "${PACKAGES[@]}/"*.pkg.tar.xz
 
 # Upload back to the repo.
 if ! gitc status | grep "nothing to commit, working tree clean" &>/dev/null; then
