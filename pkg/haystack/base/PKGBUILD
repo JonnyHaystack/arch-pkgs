@@ -7,6 +7,10 @@ arch=('any')
 url="https://github.com/JonnyHaystack/arch-pkgs"
 license=('GPL')
 depends=(
+    'base'
+    'linux'
+    'linux-firmware'
+    'grub'
     'coreutils'
     'binutils'
     'util-linux'
@@ -41,7 +45,6 @@ depends=(
     'fdisk'
     'parted'
     'htop'
-    'grub'
     'os-prober'
     'ntfs-3g'
     'lvm2'
