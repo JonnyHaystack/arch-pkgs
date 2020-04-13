@@ -12,7 +12,7 @@ REPO_NAME=meta
 PACKAGES=${@:-pkg/haystack/*}
 CHROOT="$PWD/root"
 
-mkdir -p "$LOCAL_PATH"
+alias gitc='git -C "${LOCAL_PATH}"'
 
 # Create chroot and initialise root filesystem.
 mkdir -p "$CHROOT"
