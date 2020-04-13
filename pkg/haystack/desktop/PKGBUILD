@@ -37,7 +37,6 @@ depends=(
     'i3-gaps'
     'i3lock-color'
     'i3-resurrect-git'
-    'i3-easyfocus-git'
     'i3tree-git'
     'polybar-git'
     'hideit.sh-git'
@@ -94,28 +93,25 @@ depends=(
     'thunar'
     'thunar-volman'
     'redshift'
-    'kde-connect'
+    'kdeconnect'
     'android-file-transfer'
 )
-source=('lightdm/lightdm.conf'
-        'lightdm/slick-greeter.conf'
-        'lightdm/display_setup.sh'
-        'lightdm/arch.png'
-        'systemd/set_sidetone.sh')
+
+rootdir=$PWD
 
 package() {
     # LightDM
-    install -Dm 0644 lightdm/lightdm.conf "$pkgdir/etc/lightdm/lightdm.conf.haystack"
-    install -Dm 0644 lightdm/slick-greeter.conf "$pkgdir/etc/lightdm/slick-greeter.conf.haystack"
-    install -Dm 0755 lightdm/display_setup.sh "$pkgdir/etc/lightdm/display_setup.sh"
-    install -Dm 0644 lightdm/arch.png "$pkgdir/usr/share/wallpapers/arch.png"
+    install -Dm 0644 "$rootdir/lightdm/lightdm.conf" "$pkgdir/etc/lightdm/lightdm.conf.haystack"
+    install -Dm 0644 "$rootdir/lightdm/slick-greeter.conf" "$pkgdir/etc/lightdm/slick-greeter.conf.haystack"
+    install -Dm 0755 "$rootdir/lightdm/display_setup.sh" "$pkgdir/etc/lightdm/display_setup.sh"
+    install -Dm 0644 "$rootdir/lightdm/arch.png" "$pkgdir/usr/share/wallpapers/arch.png"
 
     # bin files
-    install -Dm 0755 bin/set_sidetone.sh "$pkgdir/usr/local/bin/set_sidetone.sh"
+    install -Dm 0755 "$rootdir/bin/set_sidetone.sh" "$pkgdir/usr/local/bin/set_sidetone.sh"
 
     # systemd unit files
-    install -Dm 0644 systemd/set-sidetone.service "$pkgdir/etc/systemd/system/set-sidetone.service"
+    install -Dm 0644 "$rootdir/systemd/set-sidetone.service" "$pkgdir/etc/systemd/system/set-sidetone.service"
 
     # udev rules
-    install -Dm 0644 udev/* -t "$pkgdir/etc/udev/rules.d"
+    install -Dm 0644 "$rootdir/udev/"* -t "$pkgdir/etc/udev/rules.d"
 }
