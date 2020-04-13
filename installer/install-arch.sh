@@ -168,12 +168,7 @@ initrd   /initramfs-linux.img
 options  root=PARTUUID=$(blkid -s PARTUUID -o value "${ROOT_PART}") rw
 EOF
 
-# Set locale.
-arch-chroot /mnt locale-gen
-echo "LANG=en_GB.UTF-8" > /mnt/etc/locale.conf
-
 # Set timezone.
-arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 arch-chroot /mnt hwclock --systohc
 
 # Create admin user.
