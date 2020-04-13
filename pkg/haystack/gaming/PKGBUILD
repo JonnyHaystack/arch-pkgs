@@ -19,7 +19,9 @@ depends=(
     'sc-controller'
 )
 
+pkgdir=$PWD
+
 package() {
     # udev rules
-    install -Dm 0644 udev/* -t "$pkgdir/etc/udev/rules.d"
+    install -Dm 0644 "$rootdir/udev/"* -t "$pkgdir/etc/udev/rules.d"
 }
