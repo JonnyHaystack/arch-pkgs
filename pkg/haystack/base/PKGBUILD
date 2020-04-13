@@ -79,9 +79,7 @@ depends=(
     'logrotate'
 )
 source=('sudoers.wheel'
-        'systemd/mnt-box.mount'
-        'systemd/mnt-Media.mount'
-        'systemd/mnt-backups.mount')
+        'systemd/mnt-box.mount')
 
 package() {
     # sudoers
