@@ -10,6 +10,9 @@ REPO_URL="http://aurpkgs.haylett.lan"
 
 # Prompt user for info {{{
 
+# Set temporary keyboard layout for prompts.
+loadkeys dvorak
+
 # Hostname.
 HOSTNAME=$(dialog --stdout --inputbox "Enter hostname" 0 0) || exit 1
 clear
@@ -166,13 +169,19 @@ options  root=PARTUUID=$(blkid -s PARTUUID -o value "${ROOT_PART}") rw
 EOF
 
 # Set locale.
+arch-chroot /mnt locale-gen
 echo "LANG=en_GB.UTF-8" > /mnt/etc/locale.conf
+
+# Set timezone.
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+arch-chroot /mnt hwclock --systohc
 
 # Create admin user.
 arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G wheel,lp "$USER"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 
-# }}}
+# Change passwords.
+echo "$USER:$PASSWORD" | chpasswd --root /mnt
+echo "root:$ROOT_PASSWORD" | chpasswd --root /mnt
 
-echo "$user:$password" | chpasswd --root /mnt
-echo "root:$password" | chpasswd --root /mnt
+# }}}
