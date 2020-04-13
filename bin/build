@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# Harden script against failure.
+set -uo pipefail
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+
+CLONE_URL=git@gitlab.com:JonnyHaystack/arch-repo.git
+LOCAL_PATH=$HOME/.local/share/arch-repo
+REPO_PATH=x86_64
+REPO_NAME=meta
+
+PACKAGES=${@:-pkg/*}
+CHROOT="$PWD/root"
+
+mkdir -p "$LOCAL_PATH"
+
+# Create chroot and initialise root filesystem.
+mkdir -p "$CHROOT"
+[[ -d "$CHROOT/root" ]] || mkarchroot -C /etc/pacman.conf "$CHROOT/root" base base-devel
+
+# Build all packages.
+for package in $PACKAGES; do
+    cd "$package"
+    rm -f *.pkg.tar.xz
+    makechrootpkg -cur $CHROOT
+    cd -
+done
+
+# Clone/pull repo.
+if [[ -d "${LOCAL_PATH}/repo" ]]; then
+    # LOCAL_PATH exists, reset and pull any changes
+    gitc reset --hard
+    gitc clean -xffd
+    gitc checkout "${GIT_BRANCH}"
+    gitc pull
+else
+    # LOCAL_PATH does not exist, so clone it
+    git clone -b "${GIT_BRANCH}" "${CLONE_URL}" "${LOCAL_PATH}"
+fi
+
+mkdir -p "${LOCAL_PATH}/${REPO_PATH}"
+
+# Add built packages to database.
+ln -sf "$REPO_NAME.db.tar.xz" "$LOCAL_PATH/$REPO_NAME.db"
+ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_NAME.files"
+repo-add "$LOCAL_PATH/$REPO_NAME.db.tar.xz" "${PACKAGES[@]}/"*.pkg.tar.xz
+
+# Upload back to the repo.
+if ! gitc status | grep "nothing to commit, working tree clean" &>/dev/null; then
+    gitc add .
+    gitc commit -m "aursync $@"
+    gitc push
+fi
