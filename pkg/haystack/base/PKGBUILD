@@ -6,6 +6,7 @@ pkgdesc="Base system configuration for my Arch installations"
 arch=('any')
 url="https://github.com/JonnyHaystack/arch-pkgs"
 license=('GPL')
+install=haystack-base.install
 depends=(
     'base'
     'linux'
@@ -42,7 +43,7 @@ depends=(
     'zsh'
     'tmux'
     'ranger'
-    'fdisk'
+    'gptfdisk'
     'parted'
     'htop'
     'os-prober'
@@ -78,8 +79,8 @@ depends=(
     'pam-krb5'
     'logrotate'
 )
-source=('sudoers.wheel'
-        'systemd/mnt-box.mount')
+source=('sudoers.wheel')
+md5sums=('3d323c30d191855016f41a528bb0a7bb')
 
 package() {
     # sudoers
