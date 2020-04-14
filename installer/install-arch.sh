@@ -54,13 +54,14 @@ clear
 
 # Partition disks.
 while true; do
-    fdisk "$DEVICE"
-    read -p "Have you finished partitioning disks? [Y/n] " yn
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) ;;
-        * ) echo "Please answer yes or no.";;
-    esac
+    if fdisk "$DEVICE"; then
+      read -p "Have you finished partitioning disks? [Y/n] " yn
+      case $yn in
+          [Yy]* ) break;;
+          [Nn]* ) ;;
+          * ) echo "Please answer yes or no.";;
+      esac
+    fi
 done
 
 # Confirm ESP partition.
