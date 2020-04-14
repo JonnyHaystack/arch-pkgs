@@ -26,6 +26,8 @@ package() {
         'ttf-dejavu'
         'ttf-roboto'
         'ttf-roboto-mono'
+        'noto-fonts'
+        'noto-fonts-emoji'
         'wmctrl'
         'xdotool'
         'xsel'
