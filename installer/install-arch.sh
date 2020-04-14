@@ -12,38 +12,8 @@ AURTO_REPO_URL="http://aurpkgs.haylett.lan"
 exec 1> >(tee "stdout.log")
 exec 2> >(tee "stderr.log")
 
-# Prompt user for info {{{
-
 # Set temporary keyboard layout for prompts.
 loadkeys dvorak
-
-# Hostname.
-HOSTNAME=$(dialog --stdout --inputbox "Enter hostname" 0 0) || exit 1
-clear
-: ${HOSTNAME:?"hostname cannot be empty"}
-
-# Username.
-USER=$(dialog --stdout --inputbox "Enter admin username" 0 0) || exit 1
-clear
-: ${USER:?"user cannot be empty"}
-
-# Password.
-PASSWORD=$(dialog --stdout --passwordbox "Enter admin user's password" 0 0) || exit 1
-clear
-: ${PASSWORD:?"password cannot be empty"}
-PASSWORD2=$(dialog --stdout --passwordbox "Enter admin user's password again" 0 0) || exit 1
-clear
-[[ "$PASSWORD" == "$PASSWORD2" ]] || ( echo "Passwords did not match"; exit 1; )
-
-# Root password.
-ROOT_PASSWORD=$(dialog --stdout --passwordbox "Enter root password" 0 0) || exit 1
-clear
-: ${ROOT_PASSWORD:?"password cannot be empty"}
-ROOT_PASSWORD2=$(dialog --stdout --passwordbox "Enter root password again" 0 0) || exit 1
-clear
-[[ "$ROOT_PASSWORD" == "$ROOT_PASSWORD2" ]] || ( echo "Passwords did not match"; exit 1; )
-
-# }}}
 
 # Partitioning {{{
 
@@ -140,7 +110,6 @@ EOF
 # Install base packages.
 pacstrap /mnt haystack-base
 genfstab -U /mnt > /mnt/etc/fstab
-echo "${HOSTNAME}" > /mnt/etc/hostname
 
 # Add my repo for the installation.
 if ! grep aurto /mnt/etc/pacman.conf; then
@@ -171,6 +140,39 @@ EOF
 
 # Set timezone.
 arch-chroot /mnt hwclock --systohc
+
+# }}}
+
+# Set hostname and set up users and passwords {{{
+
+# Hostname.
+HOSTNAME=$(dialog --stdout --inputbox "Enter hostname" 0 0) || exit 1
+clear
+: ${HOSTNAME:?"hostname cannot be empty"}
+
+# Username.
+USER=$(dialog --stdout --inputbox "Enter admin username" 0 0) || exit 1
+clear
+: ${USER:?"user cannot be empty"}
+
+# Password.
+PASSWORD=$(dialog --stdout --passwordbox "Enter admin user's password" 0 0) || exit 1
+clear
+: ${PASSWORD:?"password cannot be empty"}
+PASSWORD2=$(dialog --stdout --passwordbox "Enter admin user's password again" 0 0) || exit 1
+clear
+[[ "$PASSWORD" == "$PASSWORD2" ]] || ( echo "Passwords did not match"; exit 1; )
+
+# Root password.
+ROOT_PASSWORD=$(dialog --stdout --passwordbox "Enter root password" 0 0) || exit 1
+clear
+: ${ROOT_PASSWORD:?"password cannot be empty"}
+ROOT_PASSWORD2=$(dialog --stdout --passwordbox "Enter root password again" 0 0) || exit 1
+clear
+[[ "$ROOT_PASSWORD" == "$ROOT_PASSWORD2" ]] || ( echo "Passwords did not match"; exit 1; )
+
+# Set hostname
+echo "${HOSTNAME}" > /mnt/etc/hostname
 
 # Create admin user.
 arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G wheel,lp "$USER"
