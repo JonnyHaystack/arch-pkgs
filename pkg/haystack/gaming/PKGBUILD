@@ -6,22 +6,23 @@ pkgdesc="Gaming packages for my Arch installations"
 arch=('any')
 url="https://github.com/JonnyHaystack/arch-pkgs"
 license=('GPL')
-depends=(
-    'haystack-desktop'
-    'steam'
-    'wine'
-    'winetricks'
-    'protontricks'
-    'pcsx2'
-    'rpcs3-bin'
-    'citra-git'
-    'citra-qt-git'
-    'sc-controller'
-)
 
-pkgdir=$PWD
+rootdir=$PWD
 
 package() {
+    depends=(
+        'haystack-desktop'
+        'steam'
+        'wine'
+        'winetricks'
+        'protontricks'
+        'pcsx2'
+        'rpcs3-bin'
+        'citra-git'
+        'citra-qt-git'
+        'sc-controller'
+    )
+
     # udev rules
     install -Dm 0644 "$rootdir/udev/"* -t "$pkgdir/etc/udev/rules.d"
 }

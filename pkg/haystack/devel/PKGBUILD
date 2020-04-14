@@ -6,16 +6,19 @@ pkgdesc="Development packages for my Arch installations"
 arch=('any')
 url="https://github.com/JonnyHaystack/arch-pkgs"
 license=('GPL')
-depends=(
-    'haystack-base'
-    'python'
-    'python2'
-    'python-pip'
-    'python2-pip'
-    'python-pipenv'
-    'nodejs'
-    'devtools'
-    'sqlitebrowser'
-    'valgrind'
-    'gdb'
-)
+
+package() {
+    depends=(
+        'haystack-base'
+        'python'
+        'python2'
+        'python-pip'
+        'python2-pip'
+        'python-pipenv'
+        'nodejs'
+        'devtools'
+        'sqlitebrowser'
+        'valgrind'
+        'gdb'
+    )
+}
