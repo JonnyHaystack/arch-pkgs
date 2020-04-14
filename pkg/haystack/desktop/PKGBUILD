@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Haylett <jonathan@haylett.dev>
 pkgname=haystack-desktop
-pkgver=0.0.2
+pkgver=0.0.3
 pkgrel=1
 pkgdesc="Desktop packages for my Arch installations"
 arch=('any')
