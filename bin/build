@@ -29,25 +29,27 @@ done
 # Clone/pull repo.
 if [[ -d "${LOCAL_PATH}" ]]; then
     # LOCAL_PATH exists, reset and pull any changes
-    gitc reset --hard
-    gitc clean -xffd
-    gitc checkout "${GIT_BRANCH}"
-    gitc pull
+    git -C "${LOCAL_PATH}" reset --hard
+    git -C "${LOCAL_PATH}" clean -xffd
+    git -C "${LOCAL_PATH}" checkout master
+    git -C "${LOCAL_PATH}" pull
 else
     # LOCAL_PATH does not exist, so clone it
-    git clone -b "${GIT_BRANCH}" "${CLONE_URL}" "${LOCAL_PATH}"
+    git clone "${CLONE_URL}" "${LOCAL_PATH}"
 fi
 
 mkdir -p "${LOCAL_PATH}/${REPO_PATH}"
 
 # Add built packages to database.
-ln -sf "$REPO_NAME.db.tar.xz" "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db"
-ln -sf "$REPO_NAME.files.tar.xz" "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.files"
-repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "${PACKAGES[@]}/"*.pkg.tar.xz
+ln -sf $(readlink -f "$REPO_NAME.db.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz"
+ln -sf $(readlink -f "$REPO_NAME.files.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.files.tar.xz"
+for package in $PACKAGES; do
+  repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "$package/"*.pkg.tar.xz
+done
 
 # Upload back to the repo.
-if ! gitc status | grep "nothing to commit, working tree clean" &>/dev/null; then
-    gitc add .
-    gitc commit -m "aursync $@"
-    gitc push
+if ! git -C "${LOCAL_PATH}" status | grep "nothing to commit, working tree clean" &>/dev/null; then
+    git -C "${LOCAL_PATH}" add .
+    git -C "${LOCAL_PATH}" commit -m "aursync $@"
+    git -C "${LOCAL_PATH}" push
 fi
