@@ -101,6 +101,7 @@ package() {
         'redshift'
         'kdeconnect'
         'android-file-transfer'
+        'nextcloud-client'
     )
 
     # LightDM
