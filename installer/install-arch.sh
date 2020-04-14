@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
 # Harden script against failure.
-set -uo pipefail
-trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+set -o pipefail
 
 
 # My Arch package repositories.
-META_REPO_URL="http://https://gitlab.com/JonnyHaystack/arch-repo/-/raw/master/x86_64"
+META_REPO_URL="https://gitlab.com/JonnyHaystack/arch-repo/-/raw/master/x86_64"
 AURTO_REPO_URL="http://aurpkgs.haylett.lan"
+
+# Set up logging.
+exec 1> >(tee "stdout.log")
+exec 2> >(tee "stderr.log")
 
 # Prompt user for info {{{
 
@@ -100,10 +103,6 @@ if [ -n "${HOME_PART}" ]; then
   clear
 fi
 
-# Set up logging.
-exec 1> >(tee "stdout.log")
-exec 2> >(tee "stderr.log")
-
 # Format partitions.
 if [ -n "${FORMAT_ESP}" ]; then
   wipefs "${ESP}"
@@ -152,7 +151,7 @@ echo "${HOSTNAME}" > /mnt/etc/hostname
 
 # Add my repo for the installation.
 if ! grep aurto /mnt/etc/pacman.conf; then
-cat >>/etc/pacman.conf <<EOF
+cat >>/mnt/etc/pacman.conf <<EOF
 [meta]
 SigLevel = Optional TrustAll
 Server = $META_REPO_URL
