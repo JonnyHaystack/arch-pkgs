@@ -24,7 +24,16 @@ clear
 
 # Partition disks.
 sleep 1
-fdisk "$DEVICE"
+# Partition disks.
+while true; do
+    fdisk "$DEVICE"
+    read -p "Have you finished partitioning disks? [Y/n] " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) ;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 # Confirm ESP partition.
 esplist=$(fdisk -l "$DEVICE" | grep "EFI System" | awk '{print $1,$5}')
