@@ -46,6 +46,8 @@ ln -sf $(readlink -f "$REPO_NAME.files.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NA
 for package in $PACKAGES; do
   repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "$package/"*.pkg.tar.xz
 done
+xz -d "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar.xz
+cp --remove-destination "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db"{.tar,}
 
 # Upload back to the repo.
 if ! git -C "${LOCAL_PATH}" status | grep "nothing to commit, working tree clean" &>/dev/null; then
