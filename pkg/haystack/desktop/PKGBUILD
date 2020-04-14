@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Haylett <jonathan@haylett.dev>
 pkgname=haystack-desktop
-pkgver=0.0.1
+pkgver=0.0.2
 pkgrel=1
 pkgdesc="Desktop packages for my Arch installations"
 arch=('any')
@@ -35,6 +35,7 @@ package() {
         'lightdm-settings'
         'arc-gtk-theme'
         'papirus-icon-theme'
+        'breeze'
         'lxappearance'
         'qt5ct'
         'qt5-styleplugins'
