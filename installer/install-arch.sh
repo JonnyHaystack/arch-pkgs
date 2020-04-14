@@ -53,16 +53,7 @@ DEVICE=$(dialog --stdout --menu "Select installation disk" 0 0 0 \
 clear
 
 # Partition disks.
-while true; do
-    if fdisk "$DEVICE"; then
-      read -p "Have you finished partitioning disks? [Y/n] " yn
-      case $yn in
-          [Yy]* ) break;;
-          [Nn]* ) ;;
-          * ) echo "Please answer yes or no.";;
-      esac
-    fi
-done
+fdisk "$DEVICE"
 
 # Confirm ESP partition.
 esplist=$(fdisk -l "$DEVICE" | grep "EFI System" | awk '{print $1,$5}')
