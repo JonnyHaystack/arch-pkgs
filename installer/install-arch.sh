@@ -5,8 +5,9 @@ set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
 
-# My Arch package repository.
-REPO_URL="http://aurpkgs.haylett.lan"
+# My Arch package repositories.
+META_REPO_URL="http://https://gitlab.com/JonnyHaystack/arch-repo/-/raw/master/x86_64"
+AURTO_REPO_URL="http://aurpkgs.haylett.lan"
 
 # Prompt user for info {{{
 
@@ -135,9 +136,13 @@ timedatectl set-ntp true
 
 # Add my repo for the installer ISO.
 cat >>/etc/pacman.conf <<EOF
+[meta]
+SigLevel = Optional TrustAll
+Server = $META_REPO_URL
+
 [aurto]
 SigLevel = Optional TrustAll
-Server = $REPO_URL
+Server = $AURTO_REPO_URL
 EOF
 
 # Install base packages.
@@ -148,9 +153,13 @@ echo "${HOSTNAME}" > /mnt/etc/hostname
 # Add my repo for the installation.
 if ! grep aurto /mnt/etc/pacman.conf; then
 cat >>/etc/pacman.conf <<EOF
+[meta]
+SigLevel = Optional TrustAll
+Server = $META_REPO_URL
+
 [aurto]
 SigLevel = Optional TrustAll
-Server = $REPO_URL
+Server = $AURTO_REPO_URL
 EOF
 fi
 
