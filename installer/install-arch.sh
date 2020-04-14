@@ -53,6 +53,7 @@ DEVICE=$(dialog --stdout --menu "Select installation disk" 0 0 0 \
 clear
 
 # Partition disks.
+sleep 1
 fdisk "$DEVICE"
 
 # Confirm ESP partition.
@@ -113,7 +114,7 @@ fi
 mount "${ROOT_PART}" /mnt
 mkdir -p /mnt/boot
 mount "${ESP}" /mnt/boot
-if [ -n "${HOME_PART}"]; then
+if [ -n "${HOME_PART}" ]; then
   mkdir -p /mnt/home
   mount "${HOME_PART}" /mnt/home
 fi
