@@ -45,7 +45,9 @@ ln -sf $(readlink -f "$REPO_NAME.db.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.
 ln -sf $(readlink -f "$REPO_NAME.files.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.files.tar.xz"
 for package in $PACKAGES; do
   repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "$package/"*.pkg.tar.xz
+  cp "$package/"*.pkg.tar.xz "$LOCAL_PATH/$REPO_PATH/"
 done
+rm -f "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar
 xz -d "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar.xz
 cp --remove-destination "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db"{.tar,}
 
