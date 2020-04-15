@@ -118,7 +118,7 @@ EOF
 
 # Install base packages.
 pacstrap /mnt haystack-base
-genfstab -U /mnt > /mnt/etc/fstab
+genfstab -t PARTUUID /mnt > /mnt/etc/fstab
 
 # Add my repo for the installation.
 if ! grep aurto /mnt/etc/pacman.conf; then
