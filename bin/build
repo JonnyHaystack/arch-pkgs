@@ -50,6 +50,7 @@ done
 rm -f "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar
 xz -d "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar.xz
 cp --remove-destination "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db"{.tar,}
+cp --remove-destination "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.files"{.tar,}
 
 # Upload back to the repo.
 if ! git -C "${LOCAL_PATH}" status | grep "nothing to commit, working tree clean" &>/dev/null; then
