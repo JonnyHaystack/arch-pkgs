@@ -120,4 +120,7 @@ package() {
 
     # udev rules
     install -Dm 0644 "$rootdir/udev/"* -t "$pkgdir/etc/udev/rules.d"
+
+    # XOrg config filres
+    install -Dm 0644 "$rootdir/xorg/"* -t "$pkgdir/etc/X11/xorg.conf.d"
 }
