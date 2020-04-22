@@ -59,6 +59,7 @@ package() {
         'qutebrowser'
         'python-tldextract'
         'python-pyperclip'
+        'python-stem'
         'chromium-widevine'
         'telegram-desktop'
         'caprine'
