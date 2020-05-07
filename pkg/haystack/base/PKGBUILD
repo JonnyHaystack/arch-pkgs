@@ -93,4 +93,5 @@ package() {
     # bin files
     install -Dm 0755 "$rootdir/bin/reboot" "$pkgdir/usr/local/bin/reboot"
     install -Dm 0755 "$rootdir/bin/shutdown" "$pkgdir/usr/local/bin/shutdown"
+    install -Dm 0755 "$rootdir/bin/poweroff" "$pkgdir/usr/local/bin/poweroff"
 }

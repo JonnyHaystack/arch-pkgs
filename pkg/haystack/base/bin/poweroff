@@ -5,11 +5,11 @@ if [ -n $1 ]; then
     if [ -f "/var/lib/pacman/db.lck" ]; then
       echo "Cannot shut down while pacman is running"
     else
-      shutdown
+      poweroff
     fi
   else
     echo "Incorrect hostname entered"
   fi
 else
-  echo "Usage: shutdown <hostname>"
+  echo "Usage: poweroff <hostname>"
 fi
