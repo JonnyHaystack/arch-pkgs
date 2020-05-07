@@ -53,6 +53,7 @@ package() {
         'dunst'
         'rofi'
         'rofi-calc'
+        'rofimoji'
         'transset-df'
         'alacritty'
         'guake'
