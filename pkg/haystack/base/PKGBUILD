@@ -89,4 +89,8 @@ package() {
 
     # systemd unit files
     install -Dm 0644 "$rootdir/systemd/"* -t "$pkgdir/etc/systemd/system"
+
+    # bin files
+    install -Dm 0755 "$rootdir/bin/reboot" "$pkgdir/usr/local/bin/reboot"
+    install -Dm 0755 "$rootdir/bin/shutdown" "$pkgdir/usr/local/bin/shutdown"
 }

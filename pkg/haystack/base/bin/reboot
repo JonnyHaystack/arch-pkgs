@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -n $1 ]; then
+  if [ $1 -eq $(hostname) ]; then
+    if [ -f "/var/lib/pacman/db.lck" ]; then
+      echo "Cannot reboot while pacman is running"
+    else
+      reboot
+    fi
+  else
+    echo "Incorrect hostname entered"
+  fi
+else
+  echo "Usage: reboot <hostname>"
+fi
