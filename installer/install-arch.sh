@@ -185,8 +185,7 @@ clear
 echo "${HOSTNAME}" > /mnt/etc/hostname
 
 # Create admin user.
-arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G \
-  wheel,lp,tor,bumblebee,wireshark,docker,libvirt,kvm "$USER"
+arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G wheel,lp "$USER"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 
 # Change passwords.
