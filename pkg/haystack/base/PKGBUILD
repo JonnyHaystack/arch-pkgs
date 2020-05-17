@@ -54,6 +54,7 @@ package() {
         'ntfs-3g'
         'lvm2'
         'net-tools'
+        'inetutils'
         'wireless_tools'
         'networkmanager'
         'sudo'
