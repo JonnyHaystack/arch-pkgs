@@ -5,7 +5,7 @@ if [ -n $1 ]; then
     if [ -f "/var/lib/pacman/db.lck" ]; then
       echo "Cannot reboot while pacman is running"
     else
-      reboot
+      systemctl reboot
     fi
   else
     echo "Incorrect hostname entered"
