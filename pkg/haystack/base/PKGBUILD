@@ -36,6 +36,7 @@ package() {
         'fd'
         'diffutils'
         'iputils'
+        'iw'
         'traceroute'
         'gnu-netcat'
         'grep'
