@@ -83,6 +83,7 @@ package() {
         'nss-pam-ldapd'
         'krb5'
         'pam-krb5'
+        'avahi'
         'logrotate'
     )
 
