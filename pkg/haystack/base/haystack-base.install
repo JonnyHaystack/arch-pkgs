@@ -9,4 +9,5 @@ post_upgrade() {
     locale-gen
 
     systemctl enable --now avahi-daemon.service
+    systemctl enable --now linux-modules-cleanup.service
 }
