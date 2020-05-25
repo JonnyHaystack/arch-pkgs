@@ -10,4 +10,5 @@ post_upgrade() {
 
     systemctl enable --now avahi-daemon.service
     systemctl enable --now linux-modules-cleanup.service
+    systemctl enable --now NetworkManager.service
 }
