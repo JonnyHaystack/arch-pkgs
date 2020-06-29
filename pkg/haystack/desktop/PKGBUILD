@@ -80,6 +80,7 @@ package() {
         'simple-scan'
         'gtklp'
         'system-config-printer'
+        'hplip'
         'transgui-gtk'
         'transmission-cli'
         'bitwarden-bin'
