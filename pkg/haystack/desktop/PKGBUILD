@@ -44,6 +44,7 @@ package() {
         'i3-gaps'
         'i3lock-color'
         'i3-resurrect-git'
+        'lxqt-policykit'
         'wmfocus'
         'i3tree-git'
         'polybar-git'
