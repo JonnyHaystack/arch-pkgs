@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Change monitor input.
+ddcutil setvcp 60 0x0f
+
+#sleep 3
+
+# Set display timeout to 1 second.
+export XAUTHORITY=/home/haystack/.Xauthority
+export DISPLAY=:0
+xset dpms 1 0 0

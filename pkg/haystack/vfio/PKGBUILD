@@ -1,0 +1,22 @@
+# Maintainer: Jonathan Haylett <jonathan@haylett.dev>
+pkgname=haystack-vfio
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="VFIO scripts for my Arch installations"
+arch=('any')
+url="https://github.com/JonnyHaystack/arch-pkgs"
+license=('GPL')
+
+rootdir=$PWD
+
+package() {
+    depends=(
+        'ddcutil'
+    )
+
+    # udev rules
+    install -Dm 0644 "$rootdir/udev/"* -t "$pkgdir/etc/udev/rules.d"
+
+    # bin files
+    install -Dm 0755 "$rootdir/bin/"* -t "$pkgdir/usr/local/bin"
+}

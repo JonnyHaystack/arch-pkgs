@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Disable DPMS blanking and turn on display.
+export XAUTHORITY=/home/haystack/.Xauthority
+export DISPLAY=:0
+xset dpms 0 0 0
+xset dpms force on
+
+# Set headset sidetone level.
+sleep 5
+/usr/local/bin/set_sidetone.sh

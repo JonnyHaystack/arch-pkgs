@@ -1,0 +1,2 @@
+ACTION=="remove", ENV{SUBSYSTEM}=="input", ENV{ID_VENDOR_ID}=="0c45", ENV{ID_MODEL_ID}=="652f", ENV{EV}=="1f", RUN{program}+="/usr/local/bin/vfio-leave"
+ACTION=="add", ENV{ID_VENDOR_ID}=="0c45", ENV{ID_MODEL_ID}=="652f", RUN{program}+="/usr/local/bin/vfio-return"
