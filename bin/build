@@ -21,7 +21,7 @@ mkdir -p "$CHROOT"
 # Build all packages.
 for package in $PACKAGES; do
     cd "$package"
-    rm -f *.pkg.tar.xz
+    rm -f *.pkg.tar.zst
     makechrootpkg -cur $CHROOT
     cd -
 done
@@ -44,8 +44,9 @@ mkdir -p "${LOCAL_PATH}/${REPO_PATH}"
 ln -sf $(readlink -f "$REPO_NAME.db.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz"
 ln -sf $(readlink -f "$REPO_NAME.files.tar.xz") "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.files.tar.xz"
 for package in $PACKAGES; do
-  repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "$package/"*.pkg.tar.xz
-  cp "$package/"*.pkg.tar.xz "$LOCAL_PATH/$REPO_PATH/"
+  echo "Adding package: $package"
+  repo-add "$LOCAL_PATH/$REPO_PATH/$REPO_NAME.db.tar.xz" "$package/"*.pkg.tar.zst
+  cp "$package/"*.pkg.tar.zst "$LOCAL_PATH/$REPO_PATH/"
 done
 rm -f "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar
 xz -d "$LOCAL_PATH/$REPO_PATH/$REPO_NAME."*.tar.xz
