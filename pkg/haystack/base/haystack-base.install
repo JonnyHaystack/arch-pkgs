@@ -1,4 +1,9 @@
 post_install() {
+    systemctl enable --now avahi-daemon.service
+    systemctl enable --now linux-modules-cleanup.service
+    systemctl enable --now NetworkManager.service
+    systemctl enable --now sshd.service
+
     post_upgrade
 }
 
@@ -7,8 +12,4 @@ post_upgrade() {
     echo "LANG=en_GB.UTF-8" > /etc/locale.conf
     sed 's/#en_GB/en_GB/' -i /etc/locale.gen
     locale-gen
-
-    systemctl enable --now avahi-daemon.service
-    systemctl enable --now linux-modules-cleanup.service
-    systemctl enable --now NetworkManager.service
 }
