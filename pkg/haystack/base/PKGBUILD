@@ -19,6 +19,7 @@ package() {
         'coreutils'
         'binutils'
         'util-linux'
+        'pacman-contrib'
         'procps-ng'
         'glibc'
         'file'
