@@ -62,6 +62,7 @@ package() {
         'python-tldextract'
         'python-pyperclip'
         'python-stem'
+        'python-watchdog'
         'chromium-widevine'
         'telegram-desktop'
         'caprine'
