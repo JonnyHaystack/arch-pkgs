@@ -16,7 +16,7 @@ exec 2> >(tee "stderr.log")
 loadkeys dvorak
 
 # Installer dependencies
-pacman -Sy dialog
+pacman -Sy dialog archlinux-keyring
 
 # Partitioning {{{
 
