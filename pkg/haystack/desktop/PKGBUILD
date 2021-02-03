@@ -42,7 +42,7 @@ package() {
         'qt5ct'
         'qt5-styleplugins'
         'i3-gaps'
-        'i3lock-color'
+        'i3lock-color-git'
         'i3-resurrect-git'
         'lxqt-policykit'
         'wmfocus'
@@ -92,7 +92,6 @@ package() {
         'pavucontrol'
         'alsa-lib'
         'alsa-utils'
-        'gmrender-resurrect-git'
         'tutanota-desktop-bin'
         'todotxt'
         'neofetch'
@@ -119,18 +118,18 @@ package() {
     # LightDM
     install -Dm 0644 "$rootdir/lightdm/lightdm.conf" "$pkgdir/etc/lightdm/lightdm.conf.haystack"
     install -Dm 0644 "$rootdir/lightdm/slick-greeter.conf" "$pkgdir/etc/lightdm/slick-greeter.conf.haystack"
-    install -Dm 0755 "$rootdir/lightdm/display_setup.sh" "$pkgdir/etc/lightdm/display_setup.sh"
-    install -Dm 0644 "$rootdir/lightdm/arch.png" "$pkgdir/usr/share/wallpapers/arch.png"
+    install -Dm 0755 "$rootdir/lightdm/display_setup.sh" "$pkgdir/etc/lightdm/display_setup.sh.haystack"
+    install -Dm 0644 "$rootdir/lightdm/arch.png" "$pkgdir/usr/share/wallpapers/arch.png.haystack"
 
     # bin files
-    install -Dm 0755 "$rootdir/bin/set_sidetone.sh" "$pkgdir/usr/local/bin/set_sidetone.sh"
+    install -Dm 0755 "$rootdir/bin/set_sidetone.sh" "$pkgdir/usr/local/bin/set_sidetone.sh.haystack"
 
     # systemd unit files
-    install -Dm 0644 "$rootdir/systemd/"* -t "$pkgdir/etc/systemd/system"
+    install -Dm 0644 "$rootdir/systemd/"* -Dt "$pkgdir/etc/systemd/system/haystack"
 
     # udev rules
-    install -Dm 0644 "$rootdir/udev/"* -t "$pkgdir/etc/udev/rules.d"
+    install -Dm 0644 "$rootdir/udev/"* -Dt "$pkgdir/etc/udev/rules.d/haystack"
 
     # XOrg config files
-    install -Dm 0644 "$rootdir/xorg/"* -t "$pkgdir/etc/X11/xorg.conf.d"
+    install -Dm 0644 "$rootdir/xorg/"* -Dt "$pkgdir/etc/X11/xorg.conf.d/haystack"
 }

@@ -5,6 +5,24 @@ post_install() {
 }
 
 post_upgrade() {
-    mv /etc/lightdm/lightdm.conf.haystack /etc/lightdm/lightdm.conf
-    mv /etc/lightdm/slick-greeter.conf.haystack /etc/lightdm/slick-greeter.conf
+    mv -n /etc/lightdm/lightdm.conf.haystack /etc/lightdm/lightdm.conf
+    mv -n /etc/lightdm/slick-greeter.conf.haystack /etc/lightdm/slick-greeter.conf
+    mv -n /etc/lightdm/display_setup.sh.haystack /etc/lightdm/display_setup.sh
+    rm /etc/lightdm/*.haystack
+
+    mv -n /usr/share/wallpapers/arch.png.haystack /usr/share/wallpapers/arch.png
+    rm /usr/share/wallpapers/arch.png.haystack
+    mv -n /usr/local/bin/set_sidetone.sh.haystack /usr/local/bin/set_sidetone.sh
+    rm /usr/local/bin/*.haystack
+
+    mv -n /etc/systemd/system/haystack/* /etc/systemd/system/
+    rm -rf /etc/systemd/system/haystack
+
+    mv -n /etc/udev/rules.d/haystack/* /etc/udev/rules.d/
+    rm -rf /etc/udev/rules.d/haystack
+
+    mv -n /etc/X11/xorg.conf.d/haystack/* /etc/X11/xorg.conf.d/
+    rm -rf /etc/X11/xorg.conf.d/haystack
+
+    ln -sfn /usr/bin/transset-df /usr/bin/transset
 }
