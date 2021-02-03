@@ -5,7 +5,7 @@ post_install() {
 }
 
 post_upgrade() {
-    mv -n /etc/lightdm/lightdm.conf.haystack /etc/lightdm/lightdm.conf
+    mv /etc/lightdm/lightdm.conf.haystack /etc/lightdm/lightdm.conf
     mv -n /etc/lightdm/slick-greeter.conf.haystack /etc/lightdm/slick-greeter.conf
     mv -n /etc/lightdm/display_setup.sh.haystack /etc/lightdm/display_setup.sh
     rm /etc/lightdm/*.haystack
