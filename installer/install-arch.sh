@@ -15,6 +15,9 @@ exec 2> >(tee "stderr.log")
 # Set temporary keyboard layout for prompts.
 loadkeys dvorak
 
+# Installer dependencies
+pacman -Sy dialog
+
 # Partitioning {{{
 
 devicelist=$(lsblk -dplnx size -o name,size | grep -Ev "boot|rpmb|loop" | tac)
