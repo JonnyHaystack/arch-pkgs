@@ -80,7 +80,6 @@ package() {
         'pulseaudio-bluetooth'
         'udiskie'
         'simple-scan'
-        'gtklp'
         'system-config-printer'
         'hplip'
         'transgui-gtk'
